@@ -8,9 +8,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.cn.coder</groupId>
-    <artifactId>lab-02-mybitis-annotation</artifactId>
+    <artifactId>lab-02-mybatis-annotation</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>lab-02-mybitis-annotation</name>
+    <name>lab-02-mybatis-annotation</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

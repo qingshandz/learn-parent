@@ -1,6 +1,6 @@
-package com.cn.coder.lab02mybitisannotation.mapper;
+package com.cn.coder.lab02mybatisannotation.mapper;
 
-import com.cn.coder.lab02mybitisannotation.entity.UserEntity;
+import com.cn.coder.lab02mybatisannotation.entity.UserEntity;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

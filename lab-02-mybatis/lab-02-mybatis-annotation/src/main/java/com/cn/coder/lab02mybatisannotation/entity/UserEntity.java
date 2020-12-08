@@ -1,4 +1,4 @@
-package com.cn.coder.lab02mybitisannotation.entity;
+package com.cn.coder.lab02mybatisannotation.entity;
 
 import java.util.Date;
 

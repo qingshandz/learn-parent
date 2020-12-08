@@ -15,7 +15,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>lab-02-mybitis-annotation</module>
+        <module>lab-02-mybatis-annotation</module>
     </modules>
 
 </project>

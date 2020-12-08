@@ -1,9 +1,8 @@
-package com.cn.coder.lab02mybitisannotation.user;
+package com.cn.coder.lab02mybatisannotation.user;
 
-import com.cn.coder.lab02mybitisannotation.Lab02MybitisAnnotationApplication;
-import com.cn.coder.lab02mybitisannotation.entity.UserEntity;
-import com.cn.coder.lab02mybitisannotation.mapper.UserMapper;
-import javafx.application.Application;
+import com.cn.coder.lab02mybatisannotation.Lab02MybatisAnnotationApplication;
+import com.cn.coder.lab02mybatisannotation.entity.UserEntity;
+import com.cn.coder.lab02mybatisannotation.mapper.UserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ import java.util.UUID;
  * @Description
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Lab02MybitisAnnotationApplication.class)
+@SpringBootTest(classes = Lab02MybatisAnnotationApplication.class)
 public class UserMapperTest {
 
     @Autowired
