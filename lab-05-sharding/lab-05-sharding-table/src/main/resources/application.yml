@@ -1,0 +1,35 @@
+server:
+  port: 9988
+spring:
+  shardingsphere:
+    datasource:
+      names: ds0
+      ds0:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/shard_tab?useSSL=true&characterEncoding=UTF-8&serverTimezone=UTC
+        username: root
+        password: root
+        type: com.zaxxer.hikari.HikariDataSource # \u4F7F\u7528 Hikari \u6570\u636E\u5E93\u8FDE\u63A5\u6C60
+    sharding:
+      tables:
+        user:
+          actualDataNodes: ds0.user$->{0..4}
+          tableStrategy:
+            inline:
+              shardingColumn: id
+              algorithmExpression: user$->{id % 5}
+          keyGenerator:
+            type: SNOWFLAKE
+            column: id
+            props:
+              workid: 1
+    props:
+      sql.show: true
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+logging:
+  level:
+    com.cn.coder.lab05sharding.dao: debug

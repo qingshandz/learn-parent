@@ -17,6 +17,8 @@
 
     <modules>
 <!--        <module>lab-01-springboot-seata</module>-->
-        <module>lab-02-mybatis</module>
+<!--        <module>lab-02-mybatis</module>-->
+<!--        <module>lab-04-redis</module>-->
+        <module>lab-05-sharding</module>
     </modules>
 </project>

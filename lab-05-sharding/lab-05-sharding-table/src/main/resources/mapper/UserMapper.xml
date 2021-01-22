@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.coder.lab05shardingtable.dao.UserMapper">
+    <resultMap id="userResultMap" type="com.cn.coder.lab05shardingtable.entity.UserEntity">
+        <result property="id" column="id"/>
+        <result property="userName" column="user_name"/>
+        <result property="password" column="password"/>
+        <result property="realName" column="real_name"/>
+    </resultMap>
+
+    <select id="findByCondition" resultMap="userResultMap" parameterType="com.cn.coder.lab05shardingtable.entity.UserEntity">
+        select * from `user` where 1=1
+        <if test="id!=null">
+            id = #{id}
+        </if>
+        <if test="userName!=null and userName !=' '">
+            user_name = #{userName}
+        </if>
+        <if test="password!=null and password !=' '">
+            password = #{password}
+        </if>
+        <if test="realName!=null and realName !=' '">
+            real_name = #{realName}
+        </if>
+    </select>
+
+    <insert id="insertBatch"  keyProperty="id" parameterType="java.util.List">
+        insert into `user`(user_name,password,real_name) values
+        <foreach collection="list" item="user" separator="," index="index">
+           (
+             #{user.userName},
+             #{user.password},
+             #{user.realName}
+            )
+        </foreach>
+    </insert>
+</mapper>
