@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.coder.lab05shardingsubdb.dao.OrderMapper">
+    <resultMap id="orderResultMap" type="com.cn.coder.lab05shardingsubdb.entity.OrderEntity">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="productName" column="product_name"/>
+        <result property="price" column="price"/>
+    </resultMap>
+
+    <select id="findByCondition" resultMap="orderResultMap" parameterType="com.cn.coder.lab05shardingsubdb.entity.OrderEntity">
+        select * from `order` where 1=1
+        <if test="id!=null">
+            id = #{id}
+        </if>
+        <if test="userId!=null and userId !=' '">
+            user_id = #{userId}
+        </if>
+        <if test="productName!=null and productName !=' '">
+            product_name = #{productName}
+        </if>
+        <if test="price!=null and price !=' '">
+            price = #{price}
+        </if>
+    </select>
+
+    <select id="findByPage" resultMap="orderResultMap">
+        select * from `order` order by id  limit #{startIndex},#{pageSize}
+    </select>
+
+    <insert id="insertBatch"  keyProperty="id" parameterType="java.util.List">
+        insert into `order`(user_id,product_name,price) values
+        <foreach collection="list" item="order" separator="," index="index">
+           (
+             #{order.userId},
+             #{order.productName},
+             #{order.price}
+            )
+        </foreach>
+    </insert>
+</mapper>

@@ -1,0 +1,46 @@
+server:
+  port: 9988
+spring:
+  shardingsphere:
+    datasource:
+      names: shard-ds0,shard-ds1
+      shard-ds0:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/shard-ds0?useSSL=true&characterEncoding=UTF-8&serverTimezone=UTC
+        username: root
+        password: root
+        type: com.zaxxer.hikari.HikariDataSource
+      shard-ds1:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/shard-ds1?useSSL=true&characterEncoding=UTF-8&serverTimezone=UTC
+        username: root
+        password: root
+        type: com.zaxxer.hikari.HikariDataSource
+    sharding:
+      default-data-source-name: shard-ds0
+      tables:
+        order:
+          actual-data-nodes: shard-ds$->{0..1}.order$->{0..1}
+          table-strategy:
+            inline:
+              sharding-column: id
+              algorithm-expression: order$->{id % 2}
+          databaseStrategy:
+            inline:
+              shardingColumn: user_id
+              algorithmExpression: shard-ds$->{user_id % 2}
+          keyGenerator:
+            type: SNOWFLAKE
+            column: id
+            props:
+              workid: 1
+#      default-database-strategy:
+#        inline:
+#          sharding-column: user_id
+#          algorithm-expression: ds$->{user_id % 2}
+    props:
+      sql.show: true
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

@@ -18,6 +18,10 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <modules>
+        <module>lab-05-sharding-table</module>
+        <module>lab-05-sharding-sub-db</module>
+    </modules>
 
 
 </project>
