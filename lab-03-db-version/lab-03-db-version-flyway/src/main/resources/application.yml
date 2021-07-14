@@ -16,3 +16,4 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/lab-test?useSSL=false&useUnicode=true&characterEncoding=UTF-8
     user: root
     password: root
+    baseline-on-migrate: true
